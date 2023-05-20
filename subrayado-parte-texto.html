@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animación de subrayado</title>
+  <style>
+    /* Estilos CSS para el contenedor del texto */
+    .text-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 200px;
+      position: relative; /* Se requiere para posicionar el subrayado */
+    }
+
+    /* Estilos CSS para el texto */
+    .animated-text {
+      display: inline-block;
+      font-size: 30px;
+      position: relative; /* Se requiere para posicionar el subrayado */
+      z-index: 1;
+    }
+
+    /* Estilos CSS para subrayar la selección de texto dentro del span */
+    .animated-text span::selection {
+      background-color: gold; /* Puedes ajustar el color del subrayado aquí */
+    }
+
+    /* Estilos CSS para el subrayado durante la animación */
+    .animated-text.animate span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .animated-text.animate span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px; /* Ajusta el grosor del subrayado según tu preferencia */
+      background-color: gold; /* Puedes ajustar el color del subrayado aquí */
+      opacity: 0;
+      z-index: -1;
+      animation: animateUnderline 1.5s linear forwards;
+    }
+
+    /* Keyframes de la animación del subrayado */
+    @keyframes animateUnderline {
+      0% {
+        opacity: 0;
+        width: 0;
+      }
+      100% {
+        opacity: 1;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="text-container">
+    <span class="animated-text">¡Texto con <span>subrayado animado</span>!</span>
+  </div>
+
+  <script>
+    // Iniciar la animación del subrayado cuando la página se carga
+    document.addEventListener("DOMContentLoaded", function() {
+      const textContainer = document.querySelector('.animated-text');
+      textContainer.classList.add('animate');
+    });
+  </script>
+</body>
+</html>
