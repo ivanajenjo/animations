@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animación de máquina de escribir con subrayado</title>
+  <style>
+    /* Estilos CSS para el contenedor del texto */
+    .text-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 200px;
+    }
+
+    /* Estilos CSS para el texto animado */
+    .animated-text {
+      display: inline-block;
+      font-size: 30px;
+      position: relative; /* Se requiere para posicionar el subrayado */
+    }
+
+    /* Estilos CSS para el subrayado */
+    .animated-text::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background-color: red; /* Puedes ajustar el color del subrayado aquí */
+      opacity: 0;
+      animation: animateUnderline 0.5s linear forwards;
+    }
+
+    /* Keyframes de la animación del subrayado */
+    @keyframes animateUnderline {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="text-container">
+    <span class="animated-text"></span>
+  </div>
+
+  <script>
+    // Texto para la animación
+    const text = "¡Texto animado como una máquina de escribir con subrayado!";
+    const textContainer = document.querySelector('.animated-text');
+
+    // Función para animar el texto
+    function animateText(index) {
+      if (index < text.length) {
+        textContainer.textContent += text.charAt(index);
+        index++;
+        setTimeout(function() {
+          animateText(index);
+        }, 100); // Ajusta el valor para cambiar la velocidad de la animación
+      } else {
+        textContainer.classList.add('underline'); // Agregar la clase para activar el subrayado
+      }
+    }
+
+    // Iniciar la animación cuando la página se carga
+    document.addEventListener("DOMContentLoaded", function() {
+      animateText(0);
+    });
+  </script>
+</body>
+</html>

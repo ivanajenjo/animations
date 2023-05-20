@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animación de subrayado</title>
+  <style>
+    /* Estilos CSS para el contenedor del texto */
+    .text-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 200px;
+    }
+
+    /* Estilos CSS para el texto */
+    .animated-text {
+      display: inline-block;
+      font-size: 30px;
+      position: relative; /* Se requiere para posicionar el subrayado */
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.5); /* Ajusta el valor de opacidad según tu preferencia */
+      padding: 10px 20px;
+    }
+
+    /* Estilos CSS para el subrayado */
+    .animated-text::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 100%;
+      background-color: gold; /* Puedes ajustar el color del subrayado aquí */
+      opacity: 0;
+      animation: animateUnderline 1.5s linear forwards;
+      z-index: -1;
+      filter: blur(2px);
+      border-radius: 5px;
+    }
+
+    /* Keyframes de la animación del subrayado */
+    @keyframes animateUnderline {
+      0% {
+        opacity: 0;
+        width: 0;
+      }
+      100% {
+        opacity: 1   ;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="text-container">
+    <span class="animated-text">Texto con subrayado animado</span>
+  </div>
+
+  <script>
+    // Iniciar la animación del subrayado cuando la página se carga
+    document.addEventListener("DOMContentLoaded", function() {
+      const textContainer = document.querySelector('.animated-text');
+      const underline = textContainer.querySelector('::after');
+      underline.style.animationPlayState = 'running';
+    });
+  </script>
+</body>
+</html>

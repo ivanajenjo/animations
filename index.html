@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animación de texto</title>
+  <style>
+    /* Estilos CSS para el contenedor del texto */
+    .text-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 200px;
+    }
+
+    /* Estilos CSS para el texto animado */
+    .animated-text {
+      display: inline-block;
+      font-size: 30px;
+      animation: animateText 2s linear infinite;
+    }
+
+    /* Keyframes de la animación */
+    @keyframes animateText {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="text-container">
+    <span class="animated-text">¡Texto animado por defecto!</span>
+  </div>
+
+  <script>
+    // Opcional: Cambiar el texto animado
+    const animatedText = document.querySelector('.animated-text');
+    const newText = '¡Texto animado actualizado!';
+    animatedText.textContent = newText;
+  </script>
+</body>
+</html>
